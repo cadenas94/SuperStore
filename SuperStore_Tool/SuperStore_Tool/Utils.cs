@@ -18,9 +18,9 @@ namespace SuperstoreTool
 {
     public static class Utils
     {
+        //Method to move the data from datareader into a list
         public static IEnumerable<T> DataReader_DomEntry<T>(SqlDataReader dataReader) where T : class, new()
         {
-
             List<T> domObjList = new List<T>();
             PropertyInfo[] domEntryProperties = typeof(T).GetProperties();
 
@@ -49,6 +49,7 @@ namespace SuperstoreTool
             return domObjList;
         }
 
+        //Increment the sales with the incremeneted percentage indicated by user
         public static List<YearSales> IncrementSales(List<YearSales> SalesList, double inc, string state)
         {
             if(state == "")
@@ -76,6 +77,7 @@ namespace SuperstoreTool
             }
             return SalesList;
         }
+        //Export data to a xlsx file
         public static void ExportData(ListView listView1)
         {
             using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx", ValidateNames = true })
@@ -217,16 +219,13 @@ namespace SuperstoreTool
             chart2.Series[1].ChartType = SeriesChartType.Line;
             foreach (AgSalesState c in SalesState)
             {
-                //chart2.Series.Add(0);
-
                 chart2.Series[0].Points.AddXY(c.State, c.Sales);
             }
             foreach (AgSalesState c in AggSalesState)
             {
                 chart2.Series[1].Points.AddXY(c.State, c.Sales);
             }
-            //chart2.Legends.Clear();
-            //chart1.Series[yearForecasted].Points.AddXY(AgSalesYearInc.Year, AgSalesYearInc.Sales);
+
         }
 
         public static IEnumerable<AgSalesYear> SumGroups(IEnumerable<AgSalesYear> agSalesYears)

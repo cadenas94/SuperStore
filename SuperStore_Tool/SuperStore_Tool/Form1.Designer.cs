@@ -165,7 +165,6 @@ namespace SuperStore_Tool
             this.chart1.Size = new System.Drawing.Size(957, 321);
             this.chart1.TabIndex = 13;
             this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
             // chart2
             // 
@@ -180,7 +179,6 @@ namespace SuperStore_Tool
             this.chart2.Size = new System.Drawing.Size(957, 515);
             this.chart2.TabIndex = 14;
             this.chart2.Text = "chart2";
-            this.chart2.Click += new System.EventHandler(this.chart2_Click);
             // 
             // Form1
             // 

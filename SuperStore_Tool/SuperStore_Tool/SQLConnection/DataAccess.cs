@@ -8,6 +8,7 @@ namespace SuperstoreTool.SQLConnection
 {
     public static class DataAccess
     {
+        //Class to handle the DB connection 
         public static string DbConnectionString = string.Empty;
         private static object _lock = new object();
 
@@ -22,7 +23,7 @@ namespace SuperstoreTool.SQLConnection
         private static string GetConnectionString()
         {
             //if (string.IsNullOrEmpty(DbConnectionString)) DbConnectionString = ConfigurationManager.AppSettings[ConnectionStringAppSettingName];
-            if (string.IsNullOrEmpty(DbConnectionString)) throw new Exception("THERE'S NO ACTIVE GEMOS SERVER !\nPLEASE CHECK 'KEEP ALIVE' APP!\nIF THE APP IS RUNNING CALL SUPPORT IMEDIATELY!");
+            if (string.IsNullOrEmpty(DbConnectionString)) throw new Exception("THERE'S NO ACTIVE SERVER");
 
             lock (_lock)
             {
