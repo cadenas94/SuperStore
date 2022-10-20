@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SuperstoreTool.Model
 {
-    [MetadataType(typeof(Product))]
+    [MetadataType(typeof(YearSales))]
     public class YearSales
     {
         [Display(Order = 0)]

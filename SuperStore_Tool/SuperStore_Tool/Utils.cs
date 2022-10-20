@@ -18,9 +18,9 @@ namespace SuperstoreTool
 {
     public static class Utils
     {
+        //Method to move the data from datareader into a list
         public static IEnumerable<T> DataReader_DomEntry<T>(SqlDataReader dataReader) where T : class, new()
         {
-
             List<T> domObjList = new List<T>();
             PropertyInfo[] domEntryProperties = typeof(T).GetProperties();
 
@@ -49,6 +49,7 @@ namespace SuperstoreTool
             return domObjList;
         }
 
+        //Increment the sales with the incremeneted percentage indicated by user
         public static List<YearSales> IncrementSales(List<YearSales> SalesList, double inc, string state)
         {
             if(state == "")
@@ -76,9 +77,10 @@ namespace SuperstoreTool
             }
             return SalesList;
         }
+        //Export data to a xlsx file - Point 3
         public static void ExportData(ListView listView1)
         {
-            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx", ValidateNames = true })
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.csv", ValidateNames = true })
             {
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -97,7 +99,7 @@ namespace SuperstoreTool
                         ws.Cells[i, 3] = item.SubItems[3].Text;
                         i++;
                     }
-                    wb.SaveAs(sfd.FileName, XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, true, false, XlSaveAsAccessMode.xlNoChange,
+                    wb.SaveAs(sfd.FileName, XlFileFormat.xlCSV, Type.Missing, Type.Missing, true, false, XlSaveAsAccessMode.xlNoChange,
                         XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
                     app.Quit();                    
                 }
@@ -131,8 +133,6 @@ namespace SuperstoreTool
 
             var objChart = chart1.ChartAreas[0];
             objChart.AxisX.IntervalType = DateTimeIntervalType.Number;
-
-
             objChart.AxisY.IntervalType = DateTimeIntervalType.Number;
 
 
@@ -154,7 +154,6 @@ namespace SuperstoreTool
             chart1.Series.Add(yearForecasted);
             chart1.Series[yearForecasted].Color = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
             chart1.Series[yearForecasted].ChartArea = "ChartArea1";
-
 
             chart1.Series[yearForecasted].Points.AddXY(AgSalesYearInc.Year, AgSalesYearInc.Sales);
         }
@@ -190,11 +189,7 @@ namespace SuperstoreTool
 
             }
 
-
             var objChart = chart2.ChartAreas[0];
-            //objChart.AxisX.IntervalType = String;
-
-
             objChart.AxisY.IntervalType = DateTimeIntervalType.Number;
 
             chart2.Titles.Clear();
@@ -217,16 +212,13 @@ namespace SuperstoreTool
             chart2.Series[1].ChartType = SeriesChartType.Line;
             foreach (AgSalesState c in SalesState)
             {
-                //chart2.Series.Add(0);
-
                 chart2.Series[0].Points.AddXY(c.State, c.Sales);
             }
             foreach (AgSalesState c in AggSalesState)
             {
                 chart2.Series[1].Points.AddXY(c.State, c.Sales);
             }
-            //chart2.Legends.Clear();
-            //chart1.Series[yearForecasted].Points.AddXY(AgSalesYearInc.Year, AgSalesYearInc.Sales);
+
         }
 
         public static IEnumerable<AgSalesYear> SumGroups(IEnumerable<AgSalesYear> agSalesYears)

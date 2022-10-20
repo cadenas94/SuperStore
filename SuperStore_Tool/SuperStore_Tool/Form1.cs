@@ -20,25 +20,20 @@ namespace SuperStore_Tool
         List<String> StateList = new List<string>();
         public Form1()
         {
+            //Access to DB to get the data filtered
             SalesList = DataAccess.DOM_Connection().GetSalesPerState().ToList();
+            
             InitializeComponent();
-
-            SelectYear.Format = DateTimePickerFormat.Custom;
-            SelectYear.CustomFormat = "yyyy";
-            SelectYear.ShowUpDown = true; // to prevent the calendar from being displayed
-            SelectYear.MinDate = new DateTime(2018, 1, 1);
-            SelectYear.MaxDate = new DateTime(2021, 1, 31);
             InitializelistBox1();
-            //WindowState = FormWindowState.Maximized;
-            //InitializeList();
+            InitializeSelectYear();
         }
 
-
+        //Button which execute Point 1, 2 and Bonus 1 and Bonus 2 
         private void button1_Click(object sender, EventArgs e)
         {
-            listView1.Clear();
-            //List<Product> ProductList = DataAccess.DOM_Connection().GetAll().ToList();
+            listView1.Clear();          
             String yearSelected = SelectYear.Value.Year.ToString();
+            //Get the year from user 
             yearList = SalesList.Where(x => x.SaleYear.ToString() == yearSelected).ToList();
 
 
@@ -48,23 +43,29 @@ namespace SuperStore_Tool
 
             yearList = Utils.IncrementSales(yearList, inc, state);
 
+            //Fill the list view object with the results from point 1 and 2
             foreach (YearSales c in yearList)
             {
                 listView1.Items.Add(new ListViewItem(new string[]{c.State.ToString(), c.Sales.ToString(), c.Increment.ToString() + "%",
                 c.IncreaseSales.ToString()}));
             }
             InitializeList();
-            //Catch the state from ListBox
+            //We fill the both charts for Bonus1 and Bonus2
             Utils.FillChart1(chart1, yearSelected, inc, SalesList);
-
             Utils.FillChart2(chart2, state, yearSelected, inc, SalesList);
 
+        }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            //Export the data to an excel - Point 3
+            Utils.ExportData(listView1);
+            MessageBox.Show("Data has been successfully exported.",
+                    "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void InitializeList()
         {
             listView1.OwnerDraw = true;
-
             listView1.Columns.Add("STATE");
             listView1.Columns.Add("SALES");
             listView1.Columns.Add("INCREMENT");
@@ -78,6 +79,15 @@ namespace SuperStore_Tool
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
 
+        }
+
+        private void InitializeSelectYear()
+        {
+            SelectYear.Format = DateTimePickerFormat.Custom;
+            SelectYear.CustomFormat = "yyyy";
+            SelectYear.ShowUpDown = true;
+            SelectYear.MinDate = new DateTime(2018, 1, 1);
+            SelectYear.MaxDate = new DateTime(2021, 1, 31);
         }
 
 
@@ -135,21 +145,5 @@ namespace SuperStore_Tool
             e.DrawDefault = true;
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            Utils.ExportData(listView1);
-            MessageBox.Show("Data has been successfully exported.",
-                    "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chart2_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

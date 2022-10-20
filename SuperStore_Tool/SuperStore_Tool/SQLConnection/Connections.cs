@@ -18,47 +18,22 @@ namespace SuperstoreTool.SQLConnection
             this.ConnectionString = connectionString;
         }   
 
-        public IEnumerable<Product> GetAll()
-        {
-            using (SqlConnection dbConn = new SqlConnection(ConnectionString))
-            {
-                IEnumerable<Product> productList;
-                dbConn.Open();
-                SqlCommand cmd = new SqlCommand("[dbo].[GetProducts]", dbConn);
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                    
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    productList = Utils.DataReader_DomEntry<Product>(reader);
-                }
-
-                return productList;
-
-            }
-        }
-
-
+        //Method to get from DB a list with the values needed in order to show sales by states and years
+        //IMPORTANT! Use of ADO.NET to manage the access to the DB resources
         public IEnumerable<YearSales> GetSalesPerState()
         {
             using (SqlConnection dbConn = new SqlConnection(ConnectionString))
             {
                 IEnumerable<YearSales> salesList;
                 dbConn.Open();
-                SqlCommand cmd = new SqlCommand("[dbo].[GetStateSales]", dbConn);
-
+                SqlCommand cmd = new SqlCommand("[dbo].[SP_GetStateSales]", dbConn);
                 cmd.CommandType = CommandType.StoredProcedure;
-
-                //if (yearSelected != null)
-                //    cmd.Parameters.Add(new SqlParameter("@year", yearSelected));
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     salesList = Utils.DataReader_DomEntry<YearSales>(reader);
                 }
-
                 return salesList;
-
             }
         }
     }

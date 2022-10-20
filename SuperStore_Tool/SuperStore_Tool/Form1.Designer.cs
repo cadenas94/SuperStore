@@ -43,7 +43,7 @@ namespace SuperStore_Tool
             this.Increment = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ExportButton = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
@@ -142,17 +142,17 @@ namespace SuperStore_Tool
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Green;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(22, 615);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(244, 55);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Export Forecasted Data";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.ExportButton.BackColor = System.Drawing.Color.Green;
+            this.ExportButton.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.ExportButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.ExportButton.Location = new System.Drawing.Point(22, 615);
+            this.ExportButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ExportButton.Name = "ExportButton";
+            this.ExportButton.Size = new System.Drawing.Size(244, 55);
+            this.ExportButton.TabIndex = 11;
+            this.ExportButton.Text = "Export Forecasted Data";
+            this.ExportButton.UseVisualStyleBackColor = false;
+            this.ExportButton.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // chart1
             // 
@@ -165,7 +165,6 @@ namespace SuperStore_Tool
             this.chart1.Size = new System.Drawing.Size(957, 321);
             this.chart1.TabIndex = 13;
             this.chart1.Text = "chart1";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
             // chart2
             // 
@@ -180,7 +179,6 @@ namespace SuperStore_Tool
             this.chart2.Size = new System.Drawing.Size(957, 515);
             this.chart2.TabIndex = 14;
             this.chart2.Text = "chart2";
-            this.chart2.Click += new System.EventHandler(this.chart2_Click);
             // 
             // Form1
             // 
@@ -189,7 +187,7 @@ namespace SuperStore_Tool
             this.ClientSize = new System.Drawing.Size(1803, 845);
             this.Controls.Add(this.chart2);
             this.Controls.Add(this.chart1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.ExportButton);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Increment);
@@ -218,7 +216,7 @@ namespace SuperStore_Tool
         private TextBox Increment;
         private Label label1;
         private ListView listView1;
-        private Button button1;
+        private Button ExportButton;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.ComponentModel.BackgroundWorker backgroundWorker3;
