@@ -3,17 +3,31 @@
 DEVELOPMENT STEPS
 
 1.- Create SQL Database
+
 2.- Import the excel sheets via SQL Server Import and Export Wizard
+
 3.- Creation of the Store Procedure GetStateSales which select thre columns with State, Year and Sales.
 
 4.- Creation of Windows Forms App(.NET Framework) project with VS. This project allow the creation of a simple interface to develop the requirements.
+
 5.- App development steps:
 
   A) Add Model folder with the necessary objects as the solution was though.
 
   B) Add Folder SQLConnection to manage the connections with database. Due to we only need to read data from DB, I decide to use ADO.NET where we cal the Store Procedure   previously created which returns the data in a SqlDataReader object. Then it is transfered to a List which allow us to use the data easier. 
+  
+  C) Utils class with all the next methods:
+  
+  - DataReader_DomEntry: Load the data from SqlDataReaded into a List
+  - IncrementSales: Calculate the incremented Sales
+  - ExportData: Export the forecasted sales to a csv file.
+  - FillChart1: Display the data in the first bonus chart
+  - FillChart2: Display the data in the second bonus chart
+  - SumGroups: Mrthod to group the sales by year (first bonus chart)
+  
+  D) App config file with the connection string wich is used for DB access. 
 
-  C) In Form1.cs, we create all the necessary toolboxes. 
+  E) In Form1.cs, we create all the necessary toolboxes. 
   
   ![image](https://user-images.githubusercontent.com/32109371/197021166-9aee95b3-7c04-4367-9609-1932d449919d.png)
 
@@ -29,3 +43,9 @@ DEVELOPMENT STEPS
 Doing a test, selecting, for example, the year 2020 and an increment of 30%, the interface displays the next:
 
 ![image](https://user-images.githubusercontent.com/32109371/197025453-5ff49384-a92e-4a15-afdb-8941b1a4f296.png)
+
+
+Next Steps (NOT INCLUDED IN THE PROJECT)
+- Use of try and catch in the code to handle the error cases.
+- Use of a log package(Nlog or Log4net) to manage all the possible error cases and have a .log file which the exceptions track.
+- Development of automatic test from specific parameters.
