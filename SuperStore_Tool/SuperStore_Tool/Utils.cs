@@ -77,7 +77,7 @@ namespace SuperstoreTool
             }
             return SalesList;
         }
-        //Export data to a xlsx file
+        //Export data to a xlsx file - Point 3
         public static void ExportData(ListView listView1)
         {
             using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx", ValidateNames = true })
@@ -133,8 +133,6 @@ namespace SuperstoreTool
 
             var objChart = chart1.ChartAreas[0];
             objChart.AxisX.IntervalType = DateTimeIntervalType.Number;
-
-
             objChart.AxisY.IntervalType = DateTimeIntervalType.Number;
 
 
@@ -156,7 +154,6 @@ namespace SuperstoreTool
             chart1.Series.Add(yearForecasted);
             chart1.Series[yearForecasted].Color = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
             chart1.Series[yearForecasted].ChartArea = "ChartArea1";
-
 
             chart1.Series[yearForecasted].Points.AddXY(AgSalesYearInc.Year, AgSalesYearInc.Sales);
         }
@@ -192,11 +189,7 @@ namespace SuperstoreTool
 
             }
 
-
             var objChart = chart2.ChartAreas[0];
-            //objChart.AxisX.IntervalType = String;
-
-
             objChart.AxisY.IntervalType = DateTimeIntervalType.Number;
 
             chart2.Titles.Clear();

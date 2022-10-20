@@ -55,11 +55,17 @@ namespace SuperStore_Tool
             Utils.FillChart2(chart2, state, yearSelected, inc, SalesList);
 
         }
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            //Export the data to an excel - Point 3
+            Utils.ExportData(listView1);
+            MessageBox.Show("Data has been successfully exported.",
+                    "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
         private void InitializeList()
         {
             listView1.OwnerDraw = true;
-
             listView1.Columns.Add("STATE");
             listView1.Columns.Add("SALES");
             listView1.Columns.Add("INCREMENT");
@@ -137,14 +143,6 @@ namespace SuperStore_Tool
         private void listView1_DrawItem(object sender, DrawListViewItemEventArgs e)
         {
             e.DrawDefault = true;
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            //Export the data to an excel - Point 3
-            Utils.ExportData(listView1);
-            MessageBox.Show("Data has been successfully exported.",
-                    "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
     }
