@@ -80,7 +80,7 @@ namespace SuperstoreTool
         //Export data to a xlsx file - Point 3
         public static void ExportData(ListView listView1)
         {
-            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.xlsx", ValidateNames = true })
+            using (SaveFileDialog sfd = new SaveFileDialog() { Filter = "Excel Workbook|*.csv", ValidateNames = true })
             {
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
@@ -99,7 +99,7 @@ namespace SuperstoreTool
                         ws.Cells[i, 3] = item.SubItems[3].Text;
                         i++;
                     }
-                    wb.SaveAs(sfd.FileName, XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing, true, false, XlSaveAsAccessMode.xlNoChange,
+                    wb.SaveAs(sfd.FileName, XlFileFormat.xlCSV, Type.Missing, Type.Missing, true, false, XlSaveAsAccessMode.xlNoChange,
                         XlSaveConflictResolution.xlLocalSessionChanges, Type.Missing, Type.Missing);
                     app.Quit();                    
                 }

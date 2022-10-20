@@ -26,7 +26,7 @@ namespace SuperstoreTool.SQLConnection
             {
                 IEnumerable<YearSales> salesList;
                 dbConn.Open();
-                SqlCommand cmd = new SqlCommand("[dbo].[GetStateSales]", dbConn);
+                SqlCommand cmd = new SqlCommand("[dbo].[SP_GetStateSales]", dbConn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 using (SqlDataReader reader = cmd.ExecuteReader())
