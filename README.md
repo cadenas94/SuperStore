@@ -2,7 +2,7 @@
 
 DEVELOPMENT STEPS
 
-1.- Create SQL Database
+1.- Create SQL Database "Superstore"
 
 2.- Import the excel sheets via SQL Server Import and Export Wizard
 
