@@ -25,7 +25,10 @@ DEVELOPMENT STEPS
   - FillChart2: Display the data in the second bonus chart
   - SumGroups: Mrthod to group the sales by year (first bonus chart)
   
-  D) App config file with the connection string wich is used for DB access. 
+  D) App config file with the connection string wich is used for DB access. Important to modify in order to connect to other local datasource!!.
+  
+  ![datasource](https://user-images.githubusercontent.com/32109371/197046926-8016ca21-904e-4641-ba3e-aa0468c7efd9.PNG)
+  
 
   E) In Form1.cs, we create all the necessary toolboxes. 
   
